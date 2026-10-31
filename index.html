@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Aarush Verma-Weekly Learning Log</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600;800&display=swap">
-#glow{position:fixed;inset:0;pointer-events:none;z-index:6;opacity:0;transition:opacity .35s ease;background:radial-gradient(circle 190px at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--ac) 16%,transparent),transparent 70%)}
-.card:hover{background:radial-gradient(circle 170px at var(--cx,50%) var(--cy,50%),color-mix(in srgb,var(--ac) 14%,transparent),transparent),var(--sf)}
 <style>
 :root{--bg:#10141b;--sf:#161b24;--ln:#263041;--tx:#e6eaf2;--mu:#8b96a8;--ac:#4cc2ff;--dg:#ff7b7b;color-scheme:dark}
 @media(prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f7f8fa;--sf:#fff;--ln:#dde1e8;--tx:#151a22;--mu:#5b6678;--ac:#0b6bcb;--dg:#c93434;color-scheme:light}}
@@ -75,6 +73,8 @@ textarea{min-height:90px;resize:vertical}.hp{position:absolute;left:-9999px;heig
 .adm{padding:2rem 0}.adm h2{font-size:1.15rem;margin:2rem 0 .8rem}.narrow{max-width:380px;margin:0 auto;padding:3rem 0}
 @media(max-width:760px){.hero,.about{grid-template-columns:1fr}.av{width:110px}}
 @media(prefers-reduced-motion:reduce){.curve{animation:none;stroke-dashoffset:0}html{scroll-behavior:auto}}
+#glow{position:fixed;inset:0;pointer-events:none;z-index:6;opacity:0;transition:opacity .35s ease;background:radial-gradient(circle 190px at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--ac) 16%,transparent),transparent 70%)}
+.card:hover{background:radial-gradient(circle 170px at var(--cx,50%) var(--cy,50%),color-mix(in srgb,var(--ac) 14%,transparent),transparent),var(--sf)}
 </style>
 </head>
 <body>
@@ -149,7 +149,7 @@ async function loadComments(id){
 function qa(id){
   const box=$("#qa");if(!box)return;
   box.innerHTML=`<h2>Comments and questions</h2><p class="note">Keep it on topic and respectful. The founder removes off-topic or inappropriate comments.</p>
-  <form id="qf"><input id="qn" placeholder="Aarush Verma" maxlength="40" required aria-label="Aarush Verma" value="${esc(ls("name")||"")}"><textarea id="qt" placeholder="Your question or comment" maxlength="600" required aria-label="Your comment"></textarea><input class="hp" id="qh" tabindex="-1" autocomplete="off" aria-hidden="true"><div><button class="btn" type="submit">Post comment</button></div><span class="note" id="qe"></span></form>
+  <form id="qf"><input id="qn" placeholder="Your name" maxlength="40" required aria-label="Your name" value="${esc(ls("name")||"")}"><textarea id="qt" placeholder="Your question or comment" maxlength="600" required aria-label="Your comment"></textarea><input class="hp" id="qh" tabindex="-1" autocomplete="off" aria-hidden="true"><div><button class="btn" type="submit">Post comment</button></div><span class="note" id="qe"></span></form>
   ${cm.map(c=>`<div class="q"><div class="who"><strong>${esc(c.name)}</strong><span class="meta">${fmt(c.created_at)}</span></div><p>${esc(c.body)}</p>${isAdmin?`<button class="ib del" data-c="${c.id}" style="margin-top:.6rem">Delete</button>`:""}</div>`).join("")||`<p class="note">No comments yet. Be the first to ask.</p>`}`;
   $("#qf").onsubmit=async e=>{e.preventDefault();const er=$("#qe");if($("#qh").value)return;
     if(Date.now()-(+ls("last")||0)<20000){er.textContent="Please wait a few seconds before posting again.";return}
