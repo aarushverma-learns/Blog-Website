@@ -79,7 +79,7 @@ textarea{min-height:90px;resize:vertical}.hp{position:absolute;left:-9999px;heig
 </div></header>
 <main id="app"></main>
 <footer><div class="wrap">
-  <span>© <span id="yr"></span> Your Name · Microsoft Student Chapter</span>
+  <span>© <span id="yr"></span> Aarush Verma · Microsoft Student Chapter</span>
   <span>
     <a href="mailto:you@example.com">Email</a> ·
     <a href="https://github.com/doggoindisguise" target="_blank" rel="noopener">GitHub</a> ·
@@ -210,10 +210,10 @@ async function loadPosts(){
   loaded=true;err=error?error.message:"";posts=data||[];
 }
 async function refreshAuth(){
-  const {data}=await sb.auth.getSession();session=data.session;isAdmin=false;
-  if(session){const {data:a}=await sb.from("admins").select("user_id").maybeSingle();isAdmin=!!a}
+  const {data}=await sb.auth.getSession();session=data.session;isAdmin=false;let why="";
+  if(session){const {data:a,error:ae}=await sb.from("admins").select("user_id").maybeSingle();isAdmin=!!a;if(ae)why=" · check error: "+ae.message}
   $("#adm-link").hidden=!isAdmin;
-  $("#auth").innerHTML=session?`<a href="#" id="lo2">Log out</a>`:`<a href="#login">Founder login</a>`;
+  $("#auth").innerHTML=session?`<span class="note">${esc(session.user.email)} (${isAdmin?"founder":"not founder"}${esc(why)})</span> · <a href="#" id="lo2">Log out</a>`:`<a href="#login">Founder login</a>`;
   const l=$("#lo2");if(l)l.onclick=async e=>{e.preventDefault();await sb.auth.signOut()};
 }
 function route(){
@@ -227,7 +227,7 @@ addEventListener("hashchange",route);route();
 (async()=>{
   if(!sb)return;
   await refreshAuth();await loadPosts();route();
-  sb.auth.onAuthStateChange(async ev=>{if(ev==="SIGNED_OUT"||ev==="SIGNED_IN"){await refreshAuth();if(ev==="SIGNED_OUT")location.hash="home";route()}});
+  sb.auth.onAuthStateChange(ev=>{if(ev==="SIGNED_OUT"||ev==="SIGNED_IN")setTimeout(async()=>{await refreshAuth();if(ev==="SIGNED_OUT")location.hash="home";route()},0)});
 })();
 </script>
 </body>
