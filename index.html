@@ -143,7 +143,7 @@ async function loadComments(id){
 function qa(id){
   const box=$("#qa");if(!box)return;
   box.innerHTML=`<h2>Comments and questions</h2><p class="note">Keep it on topic and respectful. The founder removes off-topic or inappropriate comments.</p>
-  <form id="qf"><input id="qn" placeholder="Your name" maxlength="40" required aria-label="Your name" value="${esc(ls("name")||"")}"><textarea id="qt" placeholder="Your question or comment" maxlength="600" required aria-label="Your comment"></textarea><input class="hp" id="qh" tabindex="-1" autocomplete="off" aria-hidden="true"><div><button class="btn" type="submit">Post comment</button></div><span class="note" id="qe"></span></form>
+  <form id="qf"><input id="qn" placeholder="Aarush Verma" maxlength="40" required aria-label="Aarush Verma" value="${esc(ls("name")||"")}"><textarea id="qt" placeholder="Your question or comment" maxlength="600" required aria-label="Your comment"></textarea><input class="hp" id="qh" tabindex="-1" autocomplete="off" aria-hidden="true"><div><button class="btn" type="submit">Post comment</button></div><span class="note" id="qe"></span></form>
   ${cm.map(c=>`<div class="q"><div class="who"><strong>${esc(c.name)}</strong><span class="meta">${fmt(c.created_at)}</span></div><p>${esc(c.body)}</p>${isAdmin?`<button class="ib del" data-c="${c.id}" style="margin-top:.6rem">Delete</button>`:""}</div>`).join("")||`<p class="note">No comments yet. Be the first to ask.</p>`}`;
   $("#qf").onsubmit=async e=>{e.preventDefault();const er=$("#qe");if($("#qh").value)return;
     if(Date.now()-(+ls("last")||0)<20000){er.textContent="Please wait a few seconds before posting again.";return}
@@ -219,7 +219,7 @@ async function refreshAuth(){
 function route(){
   const x=location.hash.slice(1)||"home";
   if(x.startsWith("post-"))return post(x.slice(5));
-  document.title="Your Name – Weekly Learning Log";
+  document.title="Aarush Verma – Weekly Learning Log";
   if(x==="admin")return admin();if(x==="login")return login();
   home();if(x==="home")window.scrollTo(0,0);else{const el=document.getElementById(x);if(el)el.scrollIntoView()}
 }
