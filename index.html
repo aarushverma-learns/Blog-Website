@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aarush Verma – Weekly Learning Log</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600;800&display=swap">
+<style>
+:root{--bg:#10141b;--sf:#161b24;--ln:#263041;--tx:#e6eaf2;--mu:#8b96a8;--ac:#4cc2ff;--dg:#ff7b7b;color-scheme:dark}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f7f8fa;--sf:#fff;--ln:#dde1e8;--tx:#151a22;--mu:#5b6678;--ac:#0b6bcb;--dg:#c93434;color-scheme:light}}
+:root[data-theme="light"]{--bg:#f7f8fa;--sf:#fff;--ln:#dde1e8;--tx:#151a22;--mu:#5b6678;--ac:#0b6bcb;--dg:#c93434;color-scheme:light}
+:root[data-theme="dark"]{--bg:#10141b;--sf:#161b24;--ln:#263041;--tx:#e6eaf2;--mu:#8b96a8;--ac:#4cc2ff;--dg:#ff7b7b;color-scheme:dark}
+html{scroll-padding-top:70px;scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 1.0625rem/1.65 "Instrument Sans",system-ui,sans-serif}
+h1,h2,h3,.mono{font-family:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace}
+a{color:var(--ac);text-decoration:none}a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.wrap{width:min(1040px,100% - 2.5rem);margin-inline:auto}
+header.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--ln)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:1rem}
+.logo{font:600 .95rem "JetBrains Mono",monospace;color:var(--tx)}.logo i{color:var(--ac);font-style:normal}
+nav{display:flex;align-items:center;gap:1rem;font-size:.95rem}nav a{color:var(--mu)}nav a:hover{color:var(--tx);text-decoration:none}
+button{font:inherit;cursor:pointer}
+.ib{background:none;border:1px solid var(--ln);color:var(--tx);border-radius:6px;padding:.25rem .6rem;font:.85rem "JetBrains Mono",monospace}
+.ib:hover{border-color:var(--ac)}.del{color:var(--dg);border-color:var(--dg)}
+.hero{padding:clamp(3rem,9vw,5.5rem) 0 3rem;display:grid;grid-template-columns:1.1fr .9fr;gap:2.5rem;align-items:center}
+.hero h1{font-size:clamp(2rem,5.2vw,3.3rem);line-height:1.08;margin:0 0 1.1rem;font-weight:800;letter-spacing:-.03em}
+.hero p{color:var(--mu);max-width:46ch;margin:0 0 1.6rem}
+.btn{display:inline-block;background:var(--ac);color:var(--bg);font-weight:600;padding:.6rem 1.1rem;border-radius:6px;border:0}
+.btn:hover{text-decoration:none;filter:brightness(1.1)}.btn.g{background:none;color:var(--tx);border:1px solid var(--ln);margin-left:.5rem}
+.plot{background:var(--sf);border:1px solid var(--ln);border-radius:8px;padding:.9rem}.plot svg{width:100%;height:auto;display:block}
+.curve{stroke-dasharray:600;stroke-dashoffset:600;animation:draw 3.2s ease-out .3s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+section{padding:2.5rem 0}
+.sh{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.8rem;margin-bottom:1.4rem}.sh h2{margin:0;font-size:1.3rem}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.tag{border:1px solid var(--ln);background:none;color:var(--mu);border-radius:99px;padding:.15rem .75rem;font:.8rem "JetBrains Mono",monospace}
+button.tag:hover,.tag[aria-pressed="true"]{color:var(--bg);background:var(--ac);border-color:var(--ac)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.2rem}
+.card{background:var(--sf);border:1px solid var(--ln);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;color:var(--tx)}
+.card:hover{border-color:var(--ac);text-decoration:none}
+.cv{aspect-ratio:16/8;display:block;width:100%}
+.card .bd{padding:1rem 1.1rem 1.2rem;display:flex;flex-direction:column;gap:.45rem;flex:1}
+.card h3{margin:0;font-size:1.02rem;line-height:1.35}.card p{margin:0;color:var(--mu);font-size:.95rem}
+.meta{font:.78rem "JetBrains Mono",monospace;color:var(--mu)}.note{font-size:.88rem;color:var(--mu)}
+.about{display:grid;grid-template-columns:200px 1fr;gap:2rem;align-items:start;border-top:1px solid var(--ln)}
+.av{aspect-ratio:1;border-radius:8px;border:1px solid var(--ln);background:var(--sf);display:grid;place-items:center;font:800 3rem "JetBrains Mono",monospace;color:var(--ac)}
+.about h2{margin:0 0 .6rem;font-size:1.3rem}.about p{color:var(--mu);margin:.4rem 0}.skills{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
+footer{border-top:1px solid var(--ln);padding:1.6rem 0;color:var(--mu);font-size:.9rem}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem}
+.post{max-width:68ch;margin:0 auto;padding:2.5rem 0}
+.post h1{font-size:clamp(1.6rem,4vw,2.3rem);line-height:1.15;letter-spacing:-.02em;margin:.5rem 0 .8rem}
+.post h2{font-size:1.2rem;margin:2rem 0 .5rem}.post .cv{border-radius:8px;border:1px solid var(--ln);margin:1.2rem 0}
+.post img.im{width:100%;height:auto;border-radius:8px;border:1px solid var(--ln);margin:1rem 0}
+.post pre{background:var(--sf);border:1px solid var(--ln);border-radius:8px;padding:1rem;overflow-x:auto;font:.86rem/1.55 "JetBrains Mono",monospace}
+.post code{font-family:"JetBrains Mono",monospace;font-size:.9em;background:var(--sf);padding:.1em .35em;border-radius:4px}.post pre code{background:none;padding:0}
+.post blockquote{margin:1.2rem 0;padding:.2rem 1rem;border-left:3px solid var(--ac);color:var(--mu)}
+.eq{font:1rem "JetBrains Mono",monospace;text-align:center;padding:.9rem;border:1px dashed var(--ln);border-radius:8px;margin:1.2rem 0;overflow-x:auto}
+.qa{border-top:1px solid var(--ln);padding-top:1.6rem;margin-top:2.5rem}.qa h2{margin:0 0 .3rem}
+form{display:grid;gap:.6rem;margin:1rem 0 1.6rem}
+input,textarea{width:100%;background:var(--sf);color:var(--tx);border:1px solid var(--ln);border-radius:6px;padding:.6rem .75rem;font:inherit}
+textarea{min-height:90px;resize:vertical}.hp{position:absolute;left:-9999px;height:0;opacity:0}
+.q,.row{border:1px solid var(--ln);border-radius:8px;padding:.8rem 1rem;margin-bottom:.7rem;background:var(--sf)}
+.q .who{display:flex;justify-content:space-between;gap:1rem}.q p{margin:.4rem 0 0;white-space:pre-wrap;overflow-wrap:anywhere}
+.row{display:flex;justify-content:space-between;gap:1rem;align-items:center}.row>div{min-width:0;overflow-wrap:anywhere}.acts{display:flex;gap:.4rem;flex-shrink:0}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.8rem;margin:1rem 0 2rem}
+.stat{border:1px solid var(--ln);border-radius:8px;padding:.8rem 1rem;background:var(--sf)}.stat b{display:block;font:800 1.8rem "JetBrains Mono",monospace;color:var(--ac)}
+.badge{font:.75rem "JetBrains Mono",monospace;border:1px solid var(--ac);color:var(--ac);border-radius:99px;padding:.1rem .6rem}
+.adm{padding:2rem 0}.adm h2{font-size:1.15rem;margin:2rem 0 .8rem}.narrow{max-width:380px;margin:0 auto;padding:3rem 0}
+@media(max-width:760px){.hero,.about{grid-template-columns:1fr}.av{width:110px}}
+@media(prefers-reduced-motion:reduce){.curve{animation:none;stroke-dashoffset:0}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="logo" href="#home">~/<i>Aarush Verma</i></a>
+  <nav aria-label="Main"><a href="#home">Home</a><a href="#blog">Posts</a><a href="#about">About</a><a href="#admin" id="adm-link" hidden>Dashboard</a><button class="ib" id="theme" aria-label="Toggle theme">theme</button></nav>
+</div></header>
+<main id="app"></main>
+<footer><div class="wrap">
+  <span>© <span id="yr"></span> Your Name · Microsoft Student Chapter</span>
+  <span>
+    <a href="mailto:you@example.com">Email</a> ·
+    <a href="https://github.com/doggoindisguise" target="_blank" rel="noopener">GitHub</a> ·
+    <a href="https://www.linkedin.com/in/aarush-verma-54b67142b" target="_blank" rel="noopener">LinkedIn</a> ·
+    <span id="auth"></span>
+  </span>
+</div></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+/* 1. PASTE YOUR SUPABASE VALUES (Project Settings > API). The anon key is safe to be public. */
+const CFG={url:"https://aopiehbtnpawiyhlajwm.supabase.co/rest/v1/",key:"sb_publishable_qP35TTqOfmz9E2YuKSCZCQ_O-eIkukB"};
+const ME={name:"Aarush Verma",chapter:"Microsoft Student Chapter"};
+let sb=null;try{if(CFG.url.startsWith("http"))sb=supabase.createClient(CFG.url,CFG.key)}catch(e){}
+let posts=[],loaded=false,err="",filter="All",isAdmin=false,session=null,editing=null,cm=[];
+const IMG=CFG.url+"/storage/v1/object/public/blog-images/";
+const $=s=>document.querySelector(s),app=$("#app");
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const il=s=>esc(s).replace(/`([^`]+)`/g,"<code>$1</code>").replace(/\*\*([^*]+)\*\*/g,"<b>$1</b>").replace(/\n/g,"<br>");
+function md(t){return String(t||"").split("```").map((s,i)=>i%2?`<pre><code>${esc(s.replace(/^\w*\n/,""))}</code></pre>`:s.split(/\n{2,}/).map(b=>{b=b.trim();if(!b)return"";let m;
+ if(b.startsWith("## "))return`<h2>${il(b.slice(3))}</h2>`;
+ if(b.startsWith("> "))return`<blockquote>${il(b.slice(2))}</blockquote>`;
+ if(b.startsWith("$$ "))return`<div class="eq">${esc(b.slice(3))}</div>`;
+ if((m=b.match(/^!\[(.*)\]\((https:\/\/[^\s)]+)\)$/))&&m[2].startsWith(IMG))return`<img class="im" src="${esc(m[2])}" alt="${esc(m[1])}">`;
+ return`<p>${il(b)}</p>`}).join("")).join("")}
+const mins=p=>Math.max(1,Math.round(String(p.body||"").split(/\s+/).length/200));
+const fmt=d=>new Date(d).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"});
+const cover=p=>`<svg class="cv" viewBox="0 0 320 160" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Generated cover art"><rect width="320" height="160" fill="hsl(${p.hue|0} 45% 18%)"/><g fill="none" stroke="hsl(${p.hue|0} 80% 65%)" stroke-width="1.4" opacity=".85">${[0,1,2,3,4].map(i=>`<path d="M0 ${40+i*22} C 80 ${10+i*30}, 160 ${130-i*14}, 320 ${30+i*26}"/>`).join("")}</g></svg>`;
+const ls=(k,v)=>{try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}};
+const root=document.documentElement;if(ls("theme"))root.dataset.theme=ls("theme");
+$("#theme").onclick=()=>{const c=root.dataset.theme||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");const n=c==="dark"?"light":"dark";root.dataset.theme=n;ls("theme",n)};
+$("#yr").textContent=new Date().getFullYear();
+const notice=()=>!sb?`<p class="note">Setup needed: paste your Supabase URL and anon key into the CFG object at the top of the script.</p>`:err?`<p class="note">Could not load posts: ${esc(err)}</p>`:!loaded?`<p class="note">Loading…</p>`:"";
+
+/* ---------- PUBLIC INTERFACE ---------- */
+function home(){
+  const tags=["All",...new Set(posts.flatMap(p=>p.tags||[]))],list=posts.filter(p=>filter==="All"||(p.tags||[]).includes(filter));
+  app.innerHTML=`<div class="wrap"><div class="hero"><div><h1>Learning AI, ML and the science behind it, in public.</h1>
+  <p>Hi, I’m ${esc(ME.name)}, a technical team member at our ${esc(ME.chapter)}. Every week I write up what I learned. Ask questions in the comments under any post.</p>
+  <a class="btn" href="#blog">Read the posts</a><a class="btn g" href="#about">About me</a></div>
+  <div class="plot"><svg viewBox="0 0 320 180" role="img" aria-label="Animated loss curve"><g stroke="var(--ln)"><path d="M30 10V150H310"/><path d="M30 50H310M30 90H310M30 130H310" stroke-dasharray="2 5"/></g><path class="curve" d="M30 20 C 60 22, 70 90, 110 112 S 180 138, 310 144" fill="none" stroke="var(--ac)" stroke-width="2.5" stroke-linecap="round"/><text x="34" y="168" fill="var(--mu)" font-size="10" font-family="monospace">training steps</text><text x="4" y="14" fill="var(--mu)" font-size="10" font-family="monospace">loss</text></svg></div></div>
+  <section id="blog"><div class="sh"><h2>Latest posts</h2><div class="tags" role="group" aria-label="Filter by topic">${tags.map(t=>`<button class="tag" aria-pressed="${t===filter}" data-t="${esc(t)}">${esc(t)}</button>`).join("")}</div></div>
+  ${notice()}${loaded&&!err&&!list.length?`<p class="note">No posts yet.${isAdmin?` <a href="#admin">Write the first one.</a>`:""}</p>`:""}
+  <div class="grid">${list.map(p=>`<a class="card" href="#post-${esc(p.id)}">${cover(p)}<span class="bd"><span class="meta">${fmt(p.created_at)} · ${mins(p)} min read</span><h3>${esc(p.title)}</h3><p>${esc(p.excerpt)}</p><span class="tags">${(p.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</span></span></a>`).join("")}</div></section>
+  <section class="about" id="about"><div class="av" aria-hidden="true">${esc(ME.name[0])}</div><div><h2>About me</h2><p>I’m a college student on the technical team of our ${esc(ME.chapter)}. My focus is AI, machine learning and deep learning, and I plan to explore every corner of technology and science, from physics to cloud.</p><p>This blog is my weekly learning log. If something is unclear or wrong, comment under the post.</p><div class="skills">${["Python","Machine learning","Deep learning","Azure","Physics"].map(s=>`<span class="tag">${s}</span>`).join("")}</div></div></section></div>`;
+  app.querySelectorAll("[data-t]").forEach(b=>b.onclick=()=>{filter=b.dataset.t;home();$("#blog").scrollIntoView()});
+}
+function post(id){
+  const p=posts.find(x=>x.id===id);
+  if(!p){app.innerHTML=`<div class="wrap post">${notice()||`<p>Post not found. <a href="#blog">Back to posts</a></p>`}</div>`;return}
+  document.title=p.title+" – "+ME.name;
+  const i=posts.indexOf(p),nx=posts[i-1],pr=posts[i+1];
+  app.innerHTML=`<div class="wrap"><article class="post"><a href="#blog">← All posts</a><h1>${esc(p.title)}</h1><div class="meta">${fmt(p.created_at)} · ${mins(p)} min read · ${p.views} views · ${(p.tags||[]).map(esc).join(", ")}</div>${cover(p)}${md(p.body)}
+  <div style="display:flex;justify-content:space-between;gap:1rem;margin-top:2.5rem"><span>${pr?`<a href="#post-${esc(pr.id)}">← ${esc(pr.title)}</a>`:""}</span><span>${nx?`<a href="#post-${esc(nx.id)}">${esc(nx.title)} →</a>`:""}</span></div>
+  <section class="qa" id="qa" aria-live="polite"></section></article></div>`;
+  window.scrollTo(0,0);loadComments(id);
+  if(!isAdmin&&!ls("v-"+id)){ls("v-"+id,"1");sb.rpc("increment_view",{pid:id}).then(()=>{})}
+}
+async function loadComments(id){
+  const {data}=await sb.from("comments").select("*").eq("post_id",id).order("created_at",{ascending:false});cm=data||[];qa(id);
+}
+function qa(id){
+  const box=$("#qa");if(!box)return;
+  box.innerHTML=`<h2>Comments and questions</h2><p class="note">Keep it on topic and respectful. The founder removes off-topic or inappropriate comments.</p>
+  <form id="qf"><input id="qn" placeholder="Your name" maxlength="40" required aria-label="Your name" value="${esc(ls("name")||"")}"><textarea id="qt" placeholder="Your question or comment" maxlength="600" required aria-label="Your comment"></textarea><input class="hp" id="qh" tabindex="-1" autocomplete="off" aria-hidden="true"><div><button class="btn" type="submit">Post comment</button></div><span class="note" id="qe"></span></form>
+  ${cm.map(c=>`<div class="q"><div class="who"><strong>${esc(c.name)}</strong><span class="meta">${fmt(c.created_at)}</span></div><p>${esc(c.body)}</p>${isAdmin?`<button class="ib del" data-c="${c.id}" style="margin-top:.6rem">Delete</button>`:""}</div>`).join("")||`<p class="note">No comments yet. Be the first to ask.</p>`}`;
+  $("#qf").onsubmit=async e=>{e.preventDefault();const er=$("#qe");if($("#qh").value)return;
+    if(Date.now()-(+ls("last")||0)<20000){er.textContent="Please wait a few seconds before posting again.";return}
+    const n=$("#qn").value.trim(),t=$("#qt").value.trim();if(!n||!t)return;ls("name",n);
+    const {error}=await sb.from("comments").insert({post_id:id,name:n,body:t});
+    if(error){er.textContent="Could not post: "+error.message;return}ls("last",String(Date.now()));loadComments(id)};
+  box.querySelectorAll(".del").forEach(b=>b.onclick=()=>delComment(b.dataset.c,()=>loadComments(id)));
+}
+async function delComment(cid,done){
+  if(!confirm("Delete this comment?"))return;
+  const {error}=await sb.from("comments").delete().eq("id",cid);if(error)alert("Could not delete: "+error.message);else done()
+}
+
+/* ---------- FOUNDER INTERFACE ---------- */
+function login(){
+  app.innerHTML=`<div class="wrap narrow"><h1 class="mono" style="font-size:1.4rem">Founder login</h1><form id="lf"><input id="le" type="email" placeholder="Email" required autocomplete="username"><input id="lp" type="password" placeholder="Password" required autocomplete="current-password"><button class="btn" type="submit">Log in</button><span class="note" id="lm"></span></form><a href="#home">← Back to site</a></div>`;
+  $("#lf").onsubmit=async e=>{e.preventDefault();if(!sb)return;const {error}=await sb.auth.signInWithPassword({email:$("#le").value.trim(),password:$("#lp").value});
+    if(error){$("#lm").textContent="Login failed: "+error.message;return}await refreshAuth();location.hash=isAdmin?"admin":"home"};
+}
+async function admin(){
+  if(!isAdmin){app.innerHTML=`<div class="wrap narrow"><p>This area is only for the site founder.</p><a href="#login">Founder login</a></div>`;return}
+  const {data:allC}=await sb.from("comments").select("*").order("created_at",{ascending:false});const C=allC||[];
+  const views=posts.reduce((a,p)=>a+p.views,0);
+  app.innerHTML=`<div class="wrap adm"><div class="sh"><h1 class="mono" style="margin:0;font-size:1.5rem">Founder dashboard</h1><span class="badge">founder</span></div>
+  <div class="stats"><div class="stat"><b>${posts.length}</b>posts</div><div class="stat"><b>${views}</b>total views</div><div class="stat"><b>${C.length}</b>comments</div></div>
+  <h2 class="mono" id="ed-h">New post</h2>
+  <form id="pf"><input id="pt" placeholder="Title" maxlength="120" required><input id="pg" placeholder="Tags, comma separated (e.g. ML, Math)" maxlength="80"><input id="px" placeholder="Short excerpt for the card" maxlength="180" required>
+  <textarea id="pb" style="min-height:260px" placeholder="Write the post. Blank line = new paragraph.&#10;## Heading&#10;> Quote&#10;$$ equation text&#10;\`\`\`code block\`\`\`&#10;**bold** and \`inline code\`" required></textarea>
+  <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center"><button class="btn" type="submit" id="ps">Publish post</button><button class="ib" type="button" id="pi">Add image</button><button class="ib" type="button" id="pc">Clear</button><input type="file" id="pfile" accept="image/*" hidden><span class="note" id="pm"></span></div></form>
+  <h2 class="mono">Your posts</h2>${posts.map(p=>`<div class="row"><div><strong>${esc(p.title)}</strong><div class="meta">${fmt(p.created_at)} · ${p.views} views · ${C.filter(c=>c.post_id===p.id).length} comments</div></div><div class="acts"><a class="ib" href="#post-${esc(p.id)}">View</a><button class="ib" data-e="${esc(p.id)}">Edit</button><button class="ib del" data-d="${esc(p.id)}">Delete</button></div></div>`).join("")||`<p class="note">No posts yet.</p>`}
+  <h2 class="mono">Moderate comments</h2>${C.map(c=>`<div class="row"><div><strong>${esc(c.name)}</strong> <span class="meta">on ${esc((posts.find(p=>p.id===c.post_id)||{}).title||c.post_id)}</span><div style="white-space:pre-wrap">${esc(c.body)}</div></div><div class="acts"><button class="ib del" data-c="${c.id}">Delete</button></div></div>`).join("")||`<p class="note">No comments yet.</p>`}
+  <p><button class="ib" id="lo">Log out</button></p></div>`;
+  fill();
+  $("#pc").onclick=()=>{editing=null;fill()};$("#lo").onclick=async()=>{await sb.auth.signOut()};
+  $("#pi").onclick=()=>$("#pfile").click();
+  $("#pfile").onchange=async e=>{const f=e.target.files[0];if(!f)return;$("#pm").textContent="Uploading…";
+    const path=Date.now().toString(36)+"-"+f.name.replace(/[^a-zA-Z0-9.]+/g,"-");
+    const {error}=await sb.storage.from("blog-images").upload(path,f);
+    if(error){$("#pm").textContent="Upload failed: "+error.message;return}
+    const ta=$("#pb");ta.value+=(ta.value?"\n\n":"")+`![${f.name.replace(/\.\w+$/,"")}](${IMG}${path})`;$("#pm").textContent="Image added to the end of the post.";e.target.value=""};
+  $("#pf").onsubmit=save;
+  app.querySelectorAll("[data-e]").forEach(b=>b.onclick=()=>{editing=b.dataset.e;fill();$("#ed-h").scrollIntoView()});
+  app.querySelectorAll("[data-d]").forEach(b=>b.onclick=async()=>{if(!confirm("Delete this post and its comments?"))return;const {error}=await sb.from("posts").delete().eq("id",b.dataset.d);if(error)alert(error.message);else{await loadPosts();admin()}});
+  app.querySelectorAll(".row [data-c]").forEach(b=>b.onclick=()=>delComment(b.dataset.c,admin));
+}
+function fill(){
+  const p=posts.find(x=>x.id===editing)||{};
+  $("#pt").value=p.title||"";$("#pg").value=(p.tags||[]).join(", ");$("#px").value=p.excerpt||"";$("#pb").value=p.body||"";
+  $("#ed-h").textContent=editing?"Edit post":"New post";$("#ps").textContent=editing?"Save changes":"Publish post";
+}
+async function save(e){
+  e.preventDefault();const title=$("#pt").value.trim();let id=editing||(title.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,50)||"post");
+  if(!editing&&posts.some(x=>x.id===id))id+="-"+Date.now().toString(36);
+  const row={id,title,excerpt:$("#px").value.trim(),body:$("#pb").value,tags:$("#pg").value.split(",").map(s=>s.trim()).filter(Boolean).slice(0,6)};
+  if(!editing){let h=0;for(const ch of title)h=(h*31+ch.charCodeAt(0))%360;row.hue=h}
+  const {error}=await sb.from("posts").upsert(row);
+  if(error){$("#pm").textContent="Could not save: "+error.message;return}
+  editing=null;await loadPosts();admin()
+}
+
+/* ---------- data, auth, routing ---------- */
+async function loadPosts(){
+  if(!sb)return;const {data,error}=await sb.from("posts").select("*").order("created_at",{ascending:false});
+  loaded=true;err=error?error.message:"";posts=data||[];
+}
+async function refreshAuth(){
+  const {data}=await sb.auth.getSession();session=data.session;isAdmin=false;
+  if(session){const {data:a}=await sb.from("admins").select("user_id").maybeSingle();isAdmin=!!a}
+  $("#adm-link").hidden=!isAdmin;
+  $("#auth").innerHTML=session?`<a href="#" id="lo2">Log out</a>`:`<a href="#login">Founder login</a>`;
+  const l=$("#lo2");if(l)l.onclick=async e=>{e.preventDefault();await sb.auth.signOut()};
+}
+function route(){
+  const x=location.hash.slice(1)||"home";
+  if(x.startsWith("post-"))return post(x.slice(5));
+  document.title="Your Name – Weekly Learning Log";
+  if(x==="admin")return admin();if(x==="login")return login();
+  home();if(x==="home")window.scrollTo(0,0);else{const el=document.getElementById(x);if(el)el.scrollIntoView()}
+}
+addEventListener("hashchange",route);route();
+(async()=>{
+  if(!sb)return;
+  await refreshAuth();await loadPosts();route();
+  sb.auth.onAuthStateChange(async ev=>{if(ev==="SIGNED_OUT"||ev==="SIGNED_IN"){await refreshAuth();if(ev==="SIGNED_OUT")location.hash="home";route()}});
+})();
+</script>
+</body>
+</html>
