@@ -90,7 +90,7 @@ textarea{min-height:90px;resize:vertical}.hp{position:absolute;left:-9999px;heig
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script>
 /* 1. PASTE YOUR SUPABASE VALUES (Project Settings > API). The anon key is safe to be public. */
-const CFG={url:"https://aopiehbtnpawiyhlajwm.supabase.co/rest/v1/",key:"sb_publishable_qP35TTqOfmz9E2YuKSCZCQ_O-eIkukB"};
+const CFG={url:"https://aopiehbtnpawiyhlajwm.supabase.co",key:"sb_publishable_qP35TTqOfmz9E2YuKSCZCQ_O-eIkukB"};
 const ME={name:"Aarush Verma",chapter:"Microsoft Student Chapter"};
 let sb=null;try{if(CFG.url.startsWith("http"))sb=supabase.createClient(CFG.url,CFG.key)}catch(e){}
 let posts=[],loaded=false,err="",filter="All",isAdmin=false,session=null,editing=null,cm=[];
