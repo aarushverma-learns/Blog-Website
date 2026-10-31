@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Aarush Verma-Weekly Learning Log</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600;800&display=swap">
+#glow{position:fixed;inset:0;pointer-events:none;z-index:6;opacity:0;transition:opacity .35s ease;background:radial-gradient(circle 190px at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--ac) 16%,transparent),transparent 70%)}
+.card:hover{background:radial-gradient(circle 170px at var(--cx,50%) var(--cy,50%),color-mix(in srgb,var(--ac) 14%,transparent),transparent),var(--sf)}
 <style>
 :root{--bg:#10141b;--sf:#161b24;--ln:#263041;--tx:#e6eaf2;--mu:#8b96a8;--ac:#4cc2ff;--dg:#ff7b7b;color-scheme:dark}
 @media(prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f7f8fa;--sf:#fff;--ln:#dde1e8;--tx:#151a22;--mu:#5b6678;--ac:#0b6bcb;--dg:#c93434;color-scheme:light}}
@@ -19,7 +21,10 @@ a{color:var(--ac);text-decoration:none}a:hover{text-decoration:underline}
 .wrap{width:min(1040px,100% - 2.5rem);margin-inline:auto}
 header.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--ln)}
 header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:1rem}
-.logo{font:600 .95rem "JetBrains Mono",monospace;color:var(--tx)}.logo i{color:var(--ac);font-style:normal}
+.logo{font:600 .95rem "JetBrains Mono",monospace;color:var(--tx);display:inline-flex;align-items:center;gap:.6rem}.logo i{color:var(--ac);font-style:normal}.logo:hover{text-decoration:none}
+.mark{flex-shrink:0}.mark .n{animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
+@media(prefers-reduced-motion:reduce){.mark .n{animation:none}}
 nav{display:flex;align-items:center;gap:1rem;font-size:.95rem}nav a{color:var(--mu)}nav a:hover{color:var(--tx);text-decoration:none}
 button{font:inherit;cursor:pointer}
 .ib{background:none;border:1px solid var(--ln);color:var(--tx);border-radius:6px;padding:.25rem .6rem;font:.85rem "JetBrains Mono",monospace}
@@ -74,7 +79,7 @@ textarea{min-height:90px;resize:vertical}.hp{position:absolute;left:-9999px;heig
 </head>
 <body>
 <header class="top"><div class="wrap">
-  <a class="logo" href="#home">~/<i>Aarush Verma</i></a>
+  <a class="logo" href="#home" aria-label="Aarush Verma home"><svg class="mark" viewBox="0 0 28 28" width="28" height="28" aria-hidden="true"><g stroke="var(--ac)" stroke-width="1" opacity=".55" fill="none"><path d="M4 9L14 4M4 9L14 14M4 9L14 24M4 19L14 4M4 19L14 14M4 19L14 24M14 4L24 14M14 14L24 14M14 24L24 14"/></g><g fill="var(--ac)"><circle class="n" cx="4" cy="9" r="2.2"/><circle class="n" cx="4" cy="19" r="2.2" style="animation-delay:.2s"/><circle class="n" cx="14" cy="4" r="2.2" style="animation-delay:.6s"/><circle class="n" cx="14" cy="14" r="2.2" style="animation-delay:.8s"/><circle class="n" cx="14" cy="24" r="2.2" style="animation-delay:1s"/><circle class="n" cx="24" cy="14" r="2.6" style="animation-delay:1.4s"/></g></svg><span><i>Aarush</i> Verma</span></a>
   <nav aria-label="Main"><a href="#home">Home</a><a href="#blog">Posts</a><a href="#about">About</a><a href="#admin" id="adm-link" hidden>Dashboard</a><button class="ib" id="theme" aria-label="Toggle theme">theme</button></nav>
 </div></header>
 <main id="app"></main>
@@ -229,6 +234,24 @@ addEventListener("hashchange",route);route();
   if(!sb)return;
   await refreshAuth();await loadPosts();route();
   sb.auth.onAuthStateChange(ev=>{if(ev==="SIGNED_OUT"||ev==="SIGNED_IN")setTimeout(async()=>{await refreshAuth();if(ev==="SIGNED_OUT")location.hash="home";route()},0)});
+})();
+(function(){
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  const g=document.createElement("div");g.id="glow";g.setAttribute("aria-hidden","true");document.body.appendChild(g);
+  let raf=0,x=0,y=0;
+  const show=(px,py)=>{x=px;y=py;if(!raf)raf=requestAnimationFrame(()=>{raf=0;g.style.setProperty("--mx",x+"px");g.style.setProperty("--my",y+"px");g.style.opacity=1})};
+  const hide=()=>{g.style.opacity=0};
+  addEventListener("pointermove",e=>{
+    if(e.pointerType!=="mouse")return;
+    show(e.clientX,e.clientY);
+    const c=e.target.closest&&e.target.closest(".card");
+    if(c){const r=c.getBoundingClientRect();c.style.setProperty("--cx",(e.clientX-r.left)+"px");c.style.setProperty("--cy",(e.clientY-r.top)+"px")}
+  },{passive:true});
+  document.addEventListener("mouseleave",hide);
+  const touch=e=>{const t=e.touches[0];if(t)show(t.clientX,t.clientY)};
+  addEventListener("touchstart",touch,{passive:true});
+  addEventListener("touchmove",touch,{passive:true});
+  addEventListener("touchend",hide);addEventListener("touchcancel",hide);
 })();
 </script>
 </body>
